@@ -36,7 +36,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show combi
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -172,6 +172,10 @@ bindsym $mod+r mode "resize"
 #lock keybind
 bindsym $mod+b exec "i3lock -c 000000"
 
+# show cheatsheets as floating window
+for_window [class="^qpdfview$"] floating enable, resize set width 90ppt, resize set height 90ppt, move position center
+bindsym $mod+F10 exec --no-startup-id qpdfview ~/Documents/config/cheatsheets/*.pdf
+
 #no borders and title bar on windows
 default_border none
 default_floating_border none 
@@ -180,4 +184,8 @@ for_window [class="^.*"] border none
 #make caps lock act as escape 
 exec_always setxkbmap -option caps:escape
 
+exec_always xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#--bg-fill doesn't change aspect ratio of the image, but might cut of a horizontal or vertical part to make it fit
+exec_always --no-startup-id feh --bg-fill ~/.background/space8.jpg
+exec --no-startup-id nm-applet
