@@ -1,6 +1,7 @@
+// Place your key bindings in this file to override the defaultsauto[]
 [
 	{
-		"key": "alt+p",
+		"key": "alt+c",
 		"command": "workbench.action.terminal.toggleTerminal",
 		"when": "terminal.active"
 	},
@@ -26,7 +27,7 @@
 		"command": "-workbench.action.focusAboveGroup"
 	},
 	{
-		"key": "alt+m",
+		"key": "alt+k",
 		"command": "workbench.action.nextEditorInGroup"
 	},
 	{
@@ -34,7 +35,7 @@
 		"command": "-workbench.action.nextEditorInGroup"
 	},
 	{
-		"key": "alt+n",
+		"key": "alt+j",
 		"command": "workbench.action.previousEditorInGroup"
 	},
 	{
@@ -72,14 +73,6 @@
 		"key": "alt+r",
 		"command": "editor.action.goToReferences",
 		"when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
-	},
-	{
-		"key": "alt+l",
-		"command": "workbench.action.focusNextGroup"
-	},
-	{
-		"key": "alt+h",
-		"command": "workbench.action.focusPreviousGroup"
 	},
 	{
 		"key": "alt+g",
@@ -137,5 +130,53 @@
 		"key": "ctrl+u",
 		"command": "-extension.vim_ctrl+u",
 		"when": "editorTextFocus && vim.active && vim.use<C-u> && !inDebugRepl"
+	},
+	{
+		"key": "alt+t",
+		"command": "workbench.action.toggleAuxiliaryBar"
+	},
+	{
+		"key": "alt+h",
+		"command": "workbench.action.navigateLeft"
+	},
+	{
+		"key": "alt+l",
+		"command": "workbench.action.navigateRight"
+	},
+	{
+		"key": "alt+p",
+		"command": "workbench.action.quickOpen"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "-workbench.action.quickOpen"
+	},
+	{
+		"key": "alt+c",
+		"command": "-toggleSearchEditorCaseSensitive",
+		"when": "inSearchEditor && searchInputBoxFocus"
+	},
+	{
+		"key": "alt+c",
+		"command": "-workbench.action.terminal.toggleFindCaseSensitive",
+		"when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+	},
+	{
+		"key": "ctrl+p",
+		"command": "workbench.action.showCommands"
+	},
+	{
+		"key": "ctrl+shift+p",
+		"command": "-workbench.action.showCommands"
+	},
+	{
+		"key": "alt+l",
+		"command": "-toggleFindInSelection",
+		"when": "editorFocus"
+	},
+	{
+		"key": "alt+l",
+		"command": "-toggleSearchEditorContextLines",
+		"when": "inSearchEditor"
 	}
 ]

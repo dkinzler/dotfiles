@@ -133,8 +133,6 @@
     & \texttt{gg / G} \\
     line $n$                           
     & \texttt{ngg / ng} \\
-    goto declaration                   
-    & \texttt{gd} \\
     center/top/bottom line        
     & \texttt{zz / zt / zb} \\
     prev/next in jump history          
@@ -175,6 +173,19 @@
     & \texttt{@x} \\
     display hex/dec of ascii char
     & \texttt{ga} \\
+  \end{keys}
+
+  \begin{keys}{LSP}
+    goto declaration                   
+    & \texttt{gd} \\
+    hover
+    & \texttt{K} \\
+    signature help
+    & \texttt{Ctrl + k} \\
+    format
+    & \texttt{space + f} \\
+    rename
+    & \texttt{space + rn} \\
   \end{keys}
 
   \begin{keys}{Editing}
@@ -274,6 +285,8 @@
     & \texttt{"xp} \\
     clipboard register
     & \texttt{"+} \\
+    yank register, not changed by delete
+    & \texttt{"0} \\
   \end{keys}
 
   \begin{keys}{Marks}
@@ -308,7 +321,17 @@
 
   \end{keys}
 
-  \begin{keys}{Tabs/Buffers}
+  \begin{keys}{Tabs, Buffers and Windows}
+    open fuzzy finder
+    & \texttt{Alt + p} \\
+    open as h/v split window
+    & \texttt{Ctrl + x/v} \\
+    goto prev/next window
+    & \texttt{Alt + h/l} \\
+    goto prev/next buffer
+    & \texttt{Alt + j/k} \\
+    open integrated terminal
+    & \texttt{Alt + c} \\
     next/prev/third tab
     & \texttt{gt / gT / 3gt} \\
     edit file

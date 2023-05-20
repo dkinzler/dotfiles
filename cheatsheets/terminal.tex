@@ -110,23 +110,36 @@
     vi mode             & \texttt{Ctrl + Shift + Space} \\
     copy to clipboard   & \texttt{y} \\
     paste clipboard     & \texttt{Ctrl + Shift + v} \\  
+    fullscreen          & \texttt{F11} \\  
   \end{keys}
 
   \begin{keys}{Zellij}
     new tab             & \texttt{Ctrl + t + n} \\
+    focus prev/next tab & \texttt{Alt + , / .} \\
+    rename tab in tab mode & \texttt{r} \\
+    close tab/pane & \texttt{x} \\
     new pane down/right & \texttt{Ctrl + p + d/r} \\
-    inc/dec pane size   & \texttt{Ctrl + +/-} \\  
+    focus next pane & \texttt{Alt + m} \\
+    resize mode & \texttt{Ctrl + n} \\
+    inc/dec in resize mode & \texttt{h/j/k/l} \\
+    down/up in scroll mode & \texttt{j/k} \\
+    scroll mode & \texttt{Ctrl + s} \\
+    page down/up in scroll mode & \texttt{d/u} \\
+    move mode & \texttt{Ctrl + h} \\
+    move left/down/up/right & \texttt{h/j/k/l} \\
     lock/unlock		    & \texttt{Ctrl + g} \\  
   \end{keys}
 
   \centering\section{General}
 
   \begin{keys}{Keybinds}
+    fzf cd & \texttt{Alt + d} \\
+    fzf inline & \texttt{Alt + t} \\
     delete word   & \texttt{Ctrl + w} \\
     delete line  	& \texttt{Ctrl + u} \\
     start of line & \texttt{Ctrl + a} \\
     end of line & \texttt{Ctrl + e} \\
-    execute as comment & \texttt{Alt + #} \\
+    execute as comment & \texttt{Alt + \#} \\
   \end{keys}
 
   \begin{keys}{Commands}
@@ -162,8 +175,6 @@
     http client 		& \texttt{httpie} \\
   \end{keys}
 
-  \newcolumn
-
   \begin{keys}{Globbing}
     all dirs and subdirs     		& \texttt{ls **/*.txt} \\
     files larger than 250mb  		& \texttt{ls **/*(.Lm+250)} \\
@@ -184,8 +195,6 @@
     escape char			& \texttt{\textbackslash} \\
     example 			& \texttt{grep -P "\textasciicircum a[0-9]\{12\}.txt"} \\
   \end{keys}
-
-  \newcolumn
 
   \begin{keys}{Misc}
     use dir name without cd  									& \texttt{dirname} \\
