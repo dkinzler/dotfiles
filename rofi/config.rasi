@@ -1,5 +1,5 @@
 configuration {
-	modes: "combi,window,filebrowser";
+	modes: "combi";
     combi-modes: "drun,run";
 /*	font: "mono 12";*/
 /*	location: 0;*/

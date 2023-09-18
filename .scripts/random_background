@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+wget -q https://picsum.photos/1920/1080 -O ~/.scripts/bg.jpg
+feh --bg-fill ~/.scripts/bg.jpg
