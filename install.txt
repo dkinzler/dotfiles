@@ -7,7 +7,7 @@ fzf
 fd
 
 alacritty
-a NerdFont (e.g. Sauce Code Pro)
+NerdFont (patched, e.g. SauceCodePro see https://github.com/ryanoasis/nerd-fonts)
 starship
 
 tmux
