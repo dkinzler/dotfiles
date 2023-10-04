@@ -23,10 +23,11 @@ return {
         },
     },
 
-    {
-        'echasnovski/mini.ai',
-        version = false,
-        opts = {},
-    },
+    -- Text objects
+    -- {
+    --     'echasnovski/mini.ai',
+    --     version = false,
+    --     opts = {},
+    -- },
 
 }

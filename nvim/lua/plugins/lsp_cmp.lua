@@ -35,6 +35,7 @@ return {
         event = 'InsertEnter',
         dependencies = {
             'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-buffer',
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
@@ -54,19 +55,36 @@ return {
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-n>'] = cmp.mapping.select_next_item(),
                     ['<C-p>'] = cmp.mapping.select_prev_item(),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    -- open completion menu
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    -- abort completion
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm {
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true,
+                    },
                     ['<Tab>'] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ select = true })
-                        elseif luasnip.expand_or_locally_jumpable() then
+                        if luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
+                        elseif cmp.visible() then
+                            cmp.select_next_item()
                         else
                             fallback()
                         end
                     end, { 'i', 's' }),
-                    ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+                    ['<S-Tab>'] = cmp.mapping(function(fallback)
+                        if luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
+                        elseif cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
                 }),
                 sources = {
                     { name = 'nvim_lsp' },
@@ -103,21 +121,20 @@ return {
             lsp_zero.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+                vim.keymap.set('n', 'L', vim.lsp.buf.signature_help, opts)
+
                 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
                 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
                 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
                 vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
-                vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
                 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
                 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
                 vim.keymap.set('n', '<leader>f', function()
                     vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
                 end, opts)
             end)
-
-            -- diagnostics
-            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 
             -- autoformat on save
             vim.api.nvim_create_autocmd("BufWritePre", {
