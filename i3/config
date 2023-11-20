@@ -184,4 +184,7 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.scripts/random_background
 
 # Set correct screen refresh rate
-exec_always xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
+exec_always --no-startup-id xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
+
+# turn on numlock
+exec --no-startup-id numlockx on

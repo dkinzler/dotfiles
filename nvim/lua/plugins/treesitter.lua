@@ -39,10 +39,26 @@ return {
                             -- You can use the capture groups defined in textobjects.scm
                             ['aa'] = '@parameter.outer',
                             ['ia'] = '@parameter.inner',
+
                             ['af'] = '@function.outer',
                             ['if'] = '@function.inner',
-                            ['ac'] = '@class.outer',
-                            ['ic'] = '@class.inner',
+
+                            ['ai'] = '@conditional.outer',
+                            ['ii'] = '@conditional.inner',
+
+                            -- inside () and {} can already use b and B
+                            -- although these might not work in other languages, e.g. for python
+                            -- we might want to use block for B
+                        },
+                    },
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                        goto_next_start = {
+                            ["<leader>nf"] = "@function.outer",
+                        },
+                        goto_previous_start = {
+                            ["<leader>pf"] = "@function.outer",
                         },
                     },
                 },
