@@ -1,0 +1,39 @@
+#!/bin/bash
+
+localDir="$HOME/Documents/vault"
+logFile="$HOME/.obsidian.log"
+
+addts () {
+    ts '[%Y-%m-%d %H:%M:%S]'
+}
+
+checkErrorAndExit () {
+    if [[ "${PIPESTATUS[0]}" -ne 0 ]]; then
+        notify-send -u critical -i messagebox_critical "error" "could not sync vault"
+        exit 1
+    fi
+}
+
+gitadd () {
+    git -C $localDir add .
+}
+
+gitcommit () {
+    # git commit will return non-zero exit code if there is nothing to commit
+    git -C $localDir commit -m "update" || true
+}
+
+gitpush () {
+    git -C $localDir push --porcelain
+}
+
+sync () {
+    gitadd | addts >> $logFile 2>&1
+    checkErrorAndExit
+    gitcommit | addts >> $logFile 2>&1
+    checkErrorAndExit
+    gitpush | addts >> $logFile 2>&1
+    checkErrorAndExit
+}
+
+sync

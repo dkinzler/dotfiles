@@ -1,0 +1,22 @@
+#!/bin/bash
+
+localDir="$HOME/Documents/vault"
+logFile="$HOME/.obsidian.log"
+
+addts () {
+    ts '[%Y-%m-%d %H:%M:%S]'
+}
+
+gitpull () {
+    git -C $localDir pull | addts >> $logFile 2>&1
+    if [[ "${PIPESTATUS[0]}" -ne 0 ]]; then
+        notify-send -u critical -i messagebox_critical "error" "could not sync vault"
+        exit 1
+    fi
+}
+
+gitpull
+# watchexec -w $localDir --project-origin $localDir -p -d 122000 -vv --log-file ~/.obsidian_watchexec.log sync_obsidian_git &
+$HOME/.local/bin/Obsidian-1.4.13.AppImage
+# pkill -f -KILL watchexec
+sync_obsidian_git
