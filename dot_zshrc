@@ -114,3 +114,5 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
+
+export EDITOR="vim"
