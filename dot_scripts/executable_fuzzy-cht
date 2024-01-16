@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# adapted from https://github.com/iotku/fuzzy-sheets and ThePrimeagen's tmux cht script
+
+CACHE_DIR="${HOME}/.local/share/fuzzy_cht"
+CACHE_FILE_NAME="main.list"
+CACHE_FILE="${CACHE_DIR}/${CACHE_FILE_NAME}"
+
+
+function sync {
+    [ ! -d "$CACHE_DIR" ] && mkdir -p "$CACHE_DIR"
+    if [[ ! -f "${CACHE_FILE}" || $(find "${CACHE_DIR}" -name "${CACHE_FILE_NAME}" -daystart -mtime +7 | wc -l) -gt 0 ]]; then
+        echo "syncing cheat.sh languages"
+        curl "cht.sh/:list" > "$CACHE_FILE"
+    fi
+}
+
+sync
+
+selected=`cat "${CACHE_FILE}" | fzf`
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+read -p "Enter Query: " query
+
+cht $selected $query | less -R
