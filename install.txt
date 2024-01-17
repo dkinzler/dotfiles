@@ -1,0 +1,29 @@
+Install a new system
+--------------------
+
+i3
+i3status
+rofi
+
+oh-my-zsh
+alacritty
+NerdFont (patched, e.g. SauceCodePro see https://github.com/ryanoasis/nerd-fonts)
+starship
+tmux
+tpm
+
+fzf
+fd
+
+neovim
+* map vim to nvim
+* needed for some plugins
+    * gcc or clang
+    * make
+
+keyd
+* for remap of CapsLock to Esc + Ctrl
+* /etc/keyd/default.conf
+
+secrets
+* create new ssh keys or copy old ones
