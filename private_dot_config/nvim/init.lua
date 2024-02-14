@@ -3,6 +3,7 @@
 -- because it will not be set yet
 require("config.options")
 require("config.keymaps")
+require("config.commands")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

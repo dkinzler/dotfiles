@@ -23,6 +23,7 @@ return {
             vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
                 { desc = 'Search current Word' })
             vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Live grep in cwd" })
+            vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Help tags" })
         end,
     },
 
