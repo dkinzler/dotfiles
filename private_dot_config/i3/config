@@ -191,3 +191,11 @@ exec_always --no-startup-id xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
 
 # turn on numlock
 exec --no-startup-id numlockx on
+
+exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/slartibartfast/.config/i3/layout/ws1.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/slartibartfast/.config/i3/layout/ws2.json'"
+exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/slartibartfast/.config/i3/layout/ws3.json'"
+exec --no-startup-id "i3-msg 'workspace 1;'"
+exec --no-startup-id "firefox"
+exec --no-startup-id "obsidian"
+exec --no-startup-id "google-chrome"
