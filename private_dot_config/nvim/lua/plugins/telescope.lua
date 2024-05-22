@@ -1,13 +1,14 @@
 return {
 
     {
-        'nvim-telescope/telescope.nvim',
+        "nvim-telescope/telescope.nvim",
         tag = '0.1.3',
         dependencies = {
-            { 'nvim-lua/plenary.nvim' },
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope-ui-select.nvim" },
         },
         config = function()
-            require('telescope').setup({
+            require("telescope").setup({
                 defaults = {
                     layout_config = {
                         prompt_position = "top",
@@ -17,6 +18,8 @@ return {
                     results_title = false,
                 },
             })
+
+            require("telescope").load_extension("ui-select")
 
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "List files in cwd" })
@@ -28,12 +31,12 @@ return {
     },
 
     {
-        'nvim-telescope/telescope-fzf-native.nvim',
+        "nvim-telescope/telescope-fzf-native.nvim",
         -- NOTE: If you are having trouble with this installation,
         --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
+        build = "make",
         cond = function()
-            return vim.fn.executable 'make' == 1
+            return vim.fn.executable "make" == 1
         end,
     },
 
