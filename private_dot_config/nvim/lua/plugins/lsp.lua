@@ -65,7 +65,6 @@ return {
                 nmap('gr', require('telescope.builtin').lsp_references, "Goto references")
                 nmap('gs', require('telescope.builtin').lsp_document_symbols, "List Document Symbols")
                 nmap('gws', require('telescope.builtin').lsp_dynamic_workspace_symbols, "List Workspace Symbols")
-
                 nmap('<leader>rn', vim.lsp.buf.rename, "Rename symbol")
                 map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, "Code action")
 
