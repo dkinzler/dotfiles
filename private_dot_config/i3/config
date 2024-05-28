@@ -158,13 +158,15 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    mode hide
+    mode invisible
     modifier none
     status_command i3status
 }
 
 # toggle status bar
-bindsym $mod+o bar hidden_state toggle
+# alternative: set mode to hide above, but this will automatically show bar when an application triggers a notification/urgency hint
+# bindsym $mod+o bar hidden_state toggle
+bindsym $mod+o exec "if [ $(i3-msg -t get_bar_config bar-0 | jq -r '.mode') = invisible ]; then i3-msg bar mode dock; else i3-msg bar mode invisible; fi"
 
 # show help
 bindsym $mod+odiaeresis exec "google-chrome --new-window --incognito --allow-file-access-from-files ~/Documents/help/site/index.html"
