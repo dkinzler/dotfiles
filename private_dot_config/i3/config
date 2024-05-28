@@ -172,6 +172,7 @@ for_window [title="Help - Google Chrome"] floating enable, resize set width 85pp
 
 # Remove title bar and borders on windows
 for_window [class="^.*"] border none 
+for_window [class="Shotwell"] border normal 
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
