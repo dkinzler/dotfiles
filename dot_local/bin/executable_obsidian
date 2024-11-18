@@ -17,6 +17,6 @@ gitpull () {
 
 gitpull
 # watchexec -w $localDir --project-origin $localDir -p -d 122000 -vv --log-file ~/.obsidian_watchexec.log sync_obsidian_git &
-$HOME/.local/bin/Obsidian-1.4.13.AppImage
+$HOME/.local/bin/Obsidian-1.7.6.AppImage
 # pkill -f -KILL watchexec
 sync_obsidian_git

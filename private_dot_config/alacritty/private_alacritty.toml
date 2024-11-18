@@ -51,6 +51,9 @@ style = "Bold"
 action = "ToggleFullscreen"
 key = "F11"
 
-[shell]
+[terminal]
+
+[terminal.shell]
 args = ["-c", "tmux new -A -s m"]
 program = "/bin/zsh"
+
