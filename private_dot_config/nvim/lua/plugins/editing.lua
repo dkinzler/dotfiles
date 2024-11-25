@@ -31,6 +31,21 @@ return {
         },
     },
 
+    {
+        "echasnovski/mini.ai",
+        dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+        version = "*",
+        config = function(_, _)
+            local gen_spec = require("mini.ai").gen_spec
+            require("mini.ai").setup({
+                custom_textobjects = {
+                    F = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+                    i = gen_spec.treesitter({ a = "@block.outer", i = "@block.inner" }),
+                },
+            })
+        end
+    },
+
     -- Automatically highlight other uses of the word under cursor
     {
         "RRethy/vim-illuminate",
