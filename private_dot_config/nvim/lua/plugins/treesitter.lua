@@ -3,7 +3,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
+            -- 'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ":TSUpdate",
         config = function()
@@ -31,43 +31,33 @@ return {
                     -- Instead of true it can also be a list of languages
                     additional_vim_regex_highlighting = false,
                 },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                        keymaps = {
-                            -- You can use the capture groups defined in textobjects.scm
-                            ['aa'] = { query = '@parameter.outer', desc = "Select parameter" },
-                            ['ia'] = { query = '@parameter.inner', desc = "Select inner parameter" },
-
-                            ['af'] = { query = '@function.outer', desc = "Select function" },
-                            ['if'] = { query = '@function.inner', desc = "Select inner function" },
-
-                            -- ['ai'] = { query = '@conditional.outer', desc = "Select conditional" },
-                            -- ['ii'] = { query = '@conditional.inner', desc = "Select inner conditional" },
-                            ['ai'] = { query = '@block.outer', desc = "Select block" },
-                            ['ii'] = { query = '@block.inner', desc = "Select inner block" },
-
-                            ['ac'] = { query = '@call.outer', desc = "Select call" },
-                            ['ic'] = { query = '@call.inner', desc = "Select inner call" },
-
-
-                            -- inside () and {} can already use b and B
-                            -- although these might not work in other languages, e.g. for python
-                            -- we might want to use block for B
-                        },
-                    },
-                    -- move = {
-                    --     enable = true,
-                    --     set_jumps = true,
-                    --     goto_next_start = {
-                    --         ["<leader>nf"] = "@function.outer",
-                    --     },
-                    --     goto_previous_start = {
-                    --         ["<leader>pf"] = "@function.outer",
-                    --     },
-                    -- },
-                },
+                -- textobjects = {
+                --     select = {
+                --         enable = true,
+                --         lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+                --         keymaps = {
+                --             -- You can use the capture groups defined in textobjects.scm
+                --             -- ['aa'] = { query = '@parameter.outer', desc = "Select parameter" },
+                --             -- ['ia'] = { query = '@parameter.inner', desc = "Select inner parameter" },
+                --
+                --             -- ['af'] = { query = '@function.outer', desc = "Select function" },
+                --             -- ['if'] = { query = '@function.inner', desc = "Select inner function" },
+                --
+                --             -- ['ai'] = { query = '@conditional.outer', desc = "Select conditional" },
+                --             -- ['ii'] = { query = '@conditional.inner', desc = "Select inner conditional" },
+                --             -- ['ai'] = { query = '@block.outer', desc = "Select block" },
+                --             -- ['ii'] = { query = '@block.inner', desc = "Select inner block" },
+                --             --
+                --             -- ['ac'] = { query = '@call.outer', desc = "Select call" },
+                --             -- ['ic'] = { query = '@call.inner', desc = "Select inner call" },
+                --
+                --
+                --             -- inside () and {} can already use b and B
+                --             -- although these might not work in other languages, e.g. for python
+                --             -- we might want to use block for B
+                --         },
+                --     },
+                -- },
             })
         end,
     },
