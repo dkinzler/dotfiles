@@ -1,21 +1,9 @@
 return {
 
     {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        lazy = true,
-        config = false,
-        init = function()
-            -- Disable automatic setup, we are doing it manually
-            vim.g.lsp_zero_extend_cmp = 0
-            vim.g.lsp_zero_extend_lspconfig = 0
-        end,
-    },
-
-    {
         'williamboman/mason.nvim',
         lazy = false,
-        config = true,
+        opts = {},
     },
 
     {
@@ -25,76 +13,89 @@ return {
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason-lspconfig.nvim' },
+            {
+                "folke/lazydev.nvim",
+                ft = "lua", -- only load on lua files
+                opts = {},
+            },
         },
         config = function()
-            -- This is where all the LSP shenanigans will live
-            local lsp_zero = require('lsp-zero')
-            lsp_zero.extend_lspconfig()
+            local lspconfig_defaults = require('lspconfig').util.default_config
 
-            -- Taken from kickstart.nvim
-            -- Create an augroup that is used for managing our formatting autocmds.
-            --      We need one augroup per client to make sure that multiple clients
-            --      can attach to the same buffer without interfering with each other.
-            local _augroups = {}
-            local get_augroup = function(client)
-                if not _augroups[client.id] then
-                    local group_name = 'kickstart-lsp-format-' .. client.name
-                    local id = vim.api.nvim_create_augroup(group_name, { clear = true })
-                    _augroups[client.id] = id
-                end
+            -- Add cmp_nvim_lsp capabilities settings to lspconfig
+            -- This should be executed before you configure any language server
+            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lspconfig_defaults.capabilities,
+                require('cmp_nvim_lsp').default_capabilities()
+            )
 
-                return _augroups[client.id]
+            local buffer_autoformat = function(bufnr)
+                local group = 'lsp_autoformat'
+                vim.api.nvim_create_augroup(group, { clear = false })
+                vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                    buffer = bufnr,
+                    group = group,
+                    desc = 'LSP format on save',
+                    callback = function()
+                        vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
+                    end,
+                })
             end
 
-            lsp_zero.on_attach(function(client, bufnr)
-                local function map(m, l, r, desc, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    opts.desc = desc
-                    vim.keymap.set(m, l, r, opts)
-                end
-
-                local function nmap(l, r, desc, opts)
-                    map('n', l, r, desc, opts)
-                end
-
-                nmap('K', vim.lsp.buf.hover, "Hover")
-                nmap('L', vim.lsp.buf.signature_help, "Signature Help")
-
-                nmap('gd', vim.lsp.buf.definition, "Goto definition")
-                nmap('gr', require('telescope.builtin').lsp_references, "Goto references")
-                nmap('gs', require('telescope.builtin').lsp_document_symbols, "List Document Symbols")
-                nmap('gws', require('telescope.builtin').lsp_dynamic_workspace_symbols, "List Workspace Symbols")
-                nmap('<leader>rn', vim.lsp.buf.rename, "Rename symbol")
-                map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, "Code action")
-
-                map({ 'n', 'v' }, '<leader>f', function()
-                    vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
-                end, "Format")
-
-
-
-                -- autoformat on save
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = get_augroup(client),
-                    callback = function(ev)
-                        vim.lsp.buf.format({
-                            buffer = ev.buf,
-                            async = false,
-                            timeout_ms = 5000,
-                        })
+            vim.api.nvim_create_autocmd('LspAttach', {
+                desc = 'LSP actions',
+                callback = function(event)
+                    local function map(m, l, r, desc, opts)
+                        opts = opts or {}
+                        opts.buffer = event.buf
+                        opts.desc = desc
+                        vim.keymap.set(m, l, r, opts)
                     end
-                })
-            end)
+
+                    local function nmap(l, r, desc, opts)
+                        map('n', l, r, desc, opts)
+                    end
+
+                    nmap('K', vim.lsp.buf.hover, 'Hover')
+                    nmap('L', vim.lsp.buf.signature_help, 'Signature Help')
+                    nmap('gd', vim.lsp.buf.definition, 'Goto definition')
+                    nmap('gr', require('telescope.builtin').lsp_references, 'Goto references')
+                    nmap('gs', require('telescope.builtin').lsp_document_symbols, 'List Document Symbols')
+                    nmap('gws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'List Workspace Symbols')
+                    nmap('<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
+                    nmap('<leader>ca', vim.lsp.buf.code_action, 'Code action')
+                    nmap('<leader>li', function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                    end, 'Toggle inlay hints')
+                    -- in visual mode the default is to format the selected region
+                    map({ 'n', 'v' }, '<leader>lf', function()
+                        vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
+                    end, 'Format')
+
+
+                    local id = vim.tbl_get(event, 'data', 'client_id')
+                    local client = id and vim.lsp.get_client_by_id(id)
+                    if client == nil then
+                        return
+                    end
+
+                    -- make sure there is at least one client with formatting capabilities
+                    if client.supports_method('textDocument/formatting') then
+                        buffer_autoformat(event.buf)
+                    end
+                end,
+            })
 
             require('mason-lspconfig').setup({
                 ensure_installed = {},
                 handlers = {
-                    lsp_zero.default_setup,
-                    lua_ls = function()
-                        -- (Optional) Configure lua language server for neovim
-                        local lua_opts = lsp_zero.nvim_lua_ls()
-                        require('lspconfig').lua_ls.setup(lua_opts)
+                    -- this first function is the "default handler"
+                    -- it applies to every language server without a "custom handler"
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
                     end,
                 }
             })

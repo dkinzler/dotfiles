@@ -20,25 +20,31 @@ return {
                     colors.comment = "#efefef"
                 end,
                 on_highlights = function(hl, colors)
+                    -- highlight group names can be found in the tokyonight theme files
                     hl.WinSeparator = {
                         bold = true,
                         fg = colors.fg_dark,
                     }
-                    hl.BufferLineBackground = {
-                        -- used for non-selected buffers
-                        fg = colors.fg_dark,
+                    hl.BufferCurrent.bg = colors.fg_gutter;
+                    hl.BufferCurrentERROR.bg = colors.fg_gutter;
+                    hl.BufferCurrentHINT.bg = colors.fg_gutter;
+                    hl.BufferCurrentINFO.bg = colors.fg_gutter;
+                    hl.BufferCurrentIndex.bg = colors.fg_gutter;
+                    hl.BufferCurrentMod.bg = colors.fg_gutter;
+                    hl.BufferCurrentSign.bg = colors.fg_gutter;
+                    hl.BufferCurrentTarget.bg = colors.fg_gutter;
+                    hl.BufferCurrentWARN.bg = colors.fg_gutter;
+                    hl.BufferTabpageFill = {
                         bg = colors.bg,
-                    }
-                    hl.BufferLineBufferSelected = {
-                        fg = colors.blue,
-                        bold = true,
-                        italic = false,
-                        bg = colors.fg_gutter,
                     }
                 end
             })
             vim.cmd([[colorscheme tokyonight]])
         end,
+    },
+
+    {
+        'nvim-tree/nvim-web-devicons',
     },
 
     {
@@ -71,30 +77,37 @@ return {
     },
 
     {
-        'nvim-tree/nvim-web-devicons',
+        'romgrk/barbar.nvim',
+        version = '^1.0.0',
+        event = 'VeryLazy',
+        dependencies = {
+            'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
+            'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+        },
+        keys = {
+            { '<A-n>', '<Cmd>BufferNext<CR>',         desc = 'Next Buffer' },
+            { '<A-p>', '<Cmd>BufferPrevious<CR>',     desc = 'Previous Buffer' },
+            { '<A-h>', '<Cmd>BufferGoto 1<CR>',       desc = 'Goto Buffer 1' },
+            { '<A-j>', '<Cmd>BufferGoto 2<CR>',       desc = 'Goto Buffer 2' },
+            { '<A-k>', '<Cmd>BufferGoto 3<CR>',       desc = 'Goto Buffer 3' },
+            { '<A-l>', '<Cmd>BufferGoto 4<CR>',       desc = 'Goto Buffer 4' },
+            { '<A-o>', '<Cmd>BufferMoveNext<CR>',     desc = 'Move Buffer Next' },
+            { '<A-i>', '<Cmd>BufferMovePrevious<CR>', desc = 'Move Buffer Prev' },
+            { '<A-d>', '<Cmd>bd<CR>',                 desc = 'Close Buffer' },
+        },
+        config = function()
+            vim.g.barbar_auto_setup = false
+            require("barbar").setup({
+                animation = false,
+                auto_hide = false,
+                icons = {
+                    separator = { left = '', right = '' },
+                    separator_at_end = false,
+                    filetype = {
+                        enabled = false,
+                    },
+                },
+            })
+        end,
     },
-
-    -- indent guides
-    -- {
-    --   "lukas-reineke/indent-blankline.nvim",
-    --   event = { "BufReadPost", "BufNewFile" },
-    --   opts = {
-    --     char = "│",
-    --     filetype_exclude = {
-    --       "help",
-    --       "alpha",
-    --       "dashboard",
-    --       "neo-tree",
-    --       "Trouble",
-    --       "lazy",
-    --       "mason",
-    --       "notify",
-    --       "toggleterm",
-    --       "lazyterm",
-    --     },
-    --     show_trailing_blankline_indent = false,
-    --     show_current_context = false,
-    --   },
-    -- },
-
 }
