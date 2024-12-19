@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# old
+# wget -q https://picsum.photos/1920/1080 -O ~/.scripts/bg.jpg
+
+queries=("castle" "castle at night" "ruin" "castle landscape")
+query=${queries[ $RANDOM % ${#queries[@]} ]}
+access_key=$(<~/.scripts/.unsplash-key)
+wget -q -O- "https://api.unsplash.com/photos/random/?query=${query}" --header="Authorization: Client-ID ${access_key}" \
+    | jq -r '.urls.full' \
+    | wget -q -i- -O ~/.scripts/bg.jpg
+feh --bg-fill ~/.scripts/bg.jpg
