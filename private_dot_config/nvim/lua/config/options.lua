@@ -6,7 +6,7 @@ vim.opt.undofile = true  -- Save undo history to file
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.timeoutlen = 500 -- How long to wait for mapped sequence to complete in ms, default 1000
 vim.opt.updatetime = 250 -- If nothing is typed for this many ms, swap file will be written to disk
-vim.opt.spelllang = { "en", "de" }
+vim.opt.spelllang = { "en" }
 
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""

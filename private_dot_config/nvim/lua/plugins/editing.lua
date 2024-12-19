@@ -9,7 +9,7 @@ return {
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        opts = {}, -- this is equalent to setup({}) function
+        opts = {},
     },
 
     {
@@ -42,6 +42,7 @@ return {
                     F = gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
                     i = gen_spec.treesitter({ a = "@block.outer", i = "@block.inner" }),
                 },
+                n_lines = 150,
             })
         end
     },

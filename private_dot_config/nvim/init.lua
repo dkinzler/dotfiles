@@ -1,9 +1,7 @@
--- need to load these before any plugins
--- e.g. otherwise plugins won't use correct leader key in mappings
--- because it will not be set yet
+-- load these before any plugins
+-- otherwise plugins won't e.g. use correct leader key in mappings
 require("config.options")
 require("config.keymaps")
-require("config.commands")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

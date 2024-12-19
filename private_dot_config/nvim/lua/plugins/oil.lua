@@ -14,8 +14,7 @@ return {
                 },
             }
 
-            -- Open parent directory in current window
-            vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+            vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory with oil.nvim" })
         end,
     },
 }
