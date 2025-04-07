@@ -95,7 +95,7 @@ return {
             -- { '<A-l>', '<Cmd>BufferGoto 4<CR>',       desc = 'Goto Buffer 4' },
             { '<A-o>', '<Cmd>BufferMoveNext<CR>',     desc = 'Move Buffer Next' },
             { '<A-i>', '<Cmd>BufferMovePrevious<CR>', desc = 'Move Buffer Prev' },
-            { '<A-d>', '<Cmd>bd<CR>',                 desc = 'Close Buffer' },
+            { '<A-d>', '<Cmd>BufferClose<CR>',        desc = 'Close Buffer' },
         },
         config = function()
             vim.g.barbar_auto_setup = false
