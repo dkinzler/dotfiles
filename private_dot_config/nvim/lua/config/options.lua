@@ -11,27 +11,29 @@ vim.opt.spelllang = { "en" }
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
 vim.opt.ruler = true
-vim.opt.number = true                        -- Print line numbers
+vim.opt.number = true                              -- Print line numbers
 vim.opt.relativenumber = true
-vim.opt.wrap = false                         -- Don't wrap lines longer than width of window
-vim.opt.scrolloff = 4                        -- Min number of lines above/below cursor
-vim.opt.showmode = false                     -- Don't show extra line with mode, already in status bar
-vim.opt.cmdheight = 1                        -- Hide command line
+vim.opt.wrap = false                               -- Don't wrap lines longer than width of window
+vim.opt.scrolloff = 4                              -- Min number of lines above/below cursor
+vim.opt.showmode = false                           -- Don't show extra line with mode, already in status bar
+vim.opt.cmdheight = 1                              -- Hide command line
 vim.opt.signcolumn = "yes"
-vim.opt.completeopt = "menu,menuone,preview" -- Options for insert mode completion
-vim.opt.splitbelow = true                    -- Put new window below current
-vim.opt.splitright = true                    -- Put new window right of current
-vim.opt.ignorecase = true                    -- Ignore case in search patterns
-vim.opt.smartcase = true                     -- Don't ignore case if serach pattern contains upper case characters
-vim.opt.inccommand = "nosplit"               -- Preview incremental substitute
+vim.opt.completeopt = "menu,menuone,preview,fuzzy" -- Options for insert mode completion
+vim.opt.splitbelow = true                          -- Put new window below current
+vim.opt.splitright = true                          -- Put new window right of current
+vim.opt.ignorecase = true                          -- Ignore case in search patterns
+vim.opt.smartcase = true                           -- Don't ignore case if serach pattern contains upper case characters
+vim.opt.inccommand = "nosplit"                     -- Preview incremental substitute
 vim.opt.hlsearch = false
-vim.opt.incsearch = true                     -- Highlight first match so far
+vim.opt.incsearch = true                           -- Highlight first match so far
 
-vim.opt.expandtab = true                     -- Replace tabs with spaces, also applies to indent commands
+vim.opt.expandtab = true                           -- Replace tabs with spaces, also applies to indent commands
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
-vim.opt.shiftwidth = 4 -- Number of spaces for indents
+vim.opt.shiftwidth = 4                          -- Number of spaces for indents
+
+vim.diagnostic.config({ virtual_lines = true }) -- Show diagnostics as virtual text at the end of lines
 
 vim.g.netrw_banner = 0
 
