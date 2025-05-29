@@ -109,7 +109,7 @@ return {
                 ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
                 ['<C-e>'] = { 'hide' },
                 -- accepts first if no item is selected
-                ['<CR>'] = { 'select_and_accept' },
+                ['<CR>'] = { 'select_and_accept', 'fallback' },
 
                 ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
                 ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
