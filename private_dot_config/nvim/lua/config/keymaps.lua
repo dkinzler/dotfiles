@@ -10,8 +10,12 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 -- diagnostics
 vim.keymap.set("n", "<leader>ee", vim.diagnostic.open_float, { desc = "Show diagnostics in floating window" })
-vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>ep", function()
+    vim.diagnostic.jump({ count = -1 })
+end, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "<leader>en", function()
+    vim.diagnostic.jump({ count = 1 })
+end, { desc = "Go to next diagnostic message" })
 
 -- quickfix
 vim.keymap.set("n", "<leader>qo", "<Cmd>copen<CR>", { desc = "Open quickfix list" })

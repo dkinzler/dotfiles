@@ -2,6 +2,7 @@
 -- otherwise plugins won't e.g. use correct leader key in mappings
 require("config.options")
 require("config.keymaps")
+require("config.lsp")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -22,5 +23,5 @@ require("lazy").setup({
     change_detection = {
         enabled = false,
         notify = false,
-    }
+    },
 })
