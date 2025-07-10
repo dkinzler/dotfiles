@@ -26,7 +26,9 @@ return {
             require("telescope").load_extension("ui-select")
 
             local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "List files in cwd" })
+            vim.keymap.set("n", "<C-p>", function()
+                builtin.find_files({ no_ignore = true })
+            end, { desc = "List files in cwd" })
             vim.keymap.set('n', '<leader>fo', builtin.oldfiles,
                 { desc = 'List previously open files' })
             vim.keymap.set('n', '<leader>fw', builtin.grep_string,

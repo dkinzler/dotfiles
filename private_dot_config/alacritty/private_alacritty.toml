@@ -43,9 +43,10 @@ text = "CellBackground"
 [env]
 TERM = "xterm-256color"
 
-[font.normal]
-family = "SauceCodePro Nerd Font"
-style = "Bold"
+[font]
+normal.family = "SauceCodePro Nerd Font"
+normal.style = "Bold"
+size = 13.25
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"

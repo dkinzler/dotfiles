@@ -21,6 +21,7 @@ return {
                     end
                 end,
                 open_mapping = false,
+                shade_terminals = false,
             })
 
             local run_command = function(command)
