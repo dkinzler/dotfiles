@@ -136,6 +136,24 @@ return {
                     "fallback",
                 },
             },
+            cmdline = {
+                keymap = {
+                    preset = 'inherit',
+                    ['<CR>'] = { 'select_and_accept', 'fallback' },
+                    -- ['<Tab>'] = { 'show', 'select_next' },
+                    ['<Tab>'] = {
+                        function(cmp)
+                            -- if there is only a single match accept it
+                            if cmp.is_menu_visible() and #cmp.get_items() == 1 then
+                                return cmp.select_and_accept()
+                            end
+                        end,
+                        'show',
+                        'select_next',
+                    },
+                    ['<S-Tab>'] = { 'show', 'select_prev' },
+                },
+            },
             appearance = {
                 -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
                 -- Adjusts spacing to ensure icons are aligned

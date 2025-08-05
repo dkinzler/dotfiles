@@ -24,7 +24,9 @@ set -g status-left-style NONE
 set -g status-right-style NONE
 
 set -g status-left "#[fg=#15161e,bg=#7aa2f7,bold] #S #[fg=#7aa2f7,bg=#16161e,nobold,nounderscore,noitalics]"
-set -g status-right "#[fg=#7aa2f7] %H:%M#[default]"
+set -g status-right ""
+# time on the right side of status bar
+# set -g status-right "#[fg=#7aa2f7] %H:%M#[default]"
 
 setw -g window-status-activity-style "underscore,fg=#a9b1d6,bg=#16161e"
 setw -g window-status-separator ""

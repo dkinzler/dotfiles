@@ -92,8 +92,6 @@ fi
 addToPathFront $HOME/.scripts
 addToPathFront /usr/local/go/bin
 addToPathFront $HOME/go/bin
-addToPathFront /usr/local/texlive/2022/bin/x86_64-linux
-addToPathFront $HOME/.local/node/bin
 addToPathFront $HOME/.local/zig
 
 # keys

@@ -1,0 +1,81 @@
+configuration {
+  font: "SauceCodePro Nerd Font Bold 16";
+
+  combi {
+    display-name: "";
+  }
+
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #222222;
+  bg-alt: #333333;
+  fg: #888888;
+  fg-alt: #ffffff;
+  // selected-color: #7aa2f7; // tmux status bar color
+  selected-color: #00ccd7;
+
+  background-color: @bg;
+  text-color: @fg;
+}
+
+window {
+  transparency: "real";
+  width: 700px;
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+inputbar {
+  background-color: @bg-alt;
+  children: [prompt, entry];
+}
+
+entry {
+  background-color: inherit;
+  text-color: @fg-alt;
+  padding: 12px 3px;
+}
+
+prompt {
+  background-color: inherit;
+  text-color: @fg-alt;
+  padding: 12px;
+}
+
+listview {
+  lines: 8;
+}
+
+element {
+  children: [element-icon, element-text];
+}
+
+element-icon {
+  padding: 10px 10px;
+  size: 24px;
+}
+
+element-text {
+  padding: 10px 0;
+}
+
+element-icon selected {
+  background-color: @selected-color;
+}
+
+element-text selected {
+  background-color: @selected-color;
+  text-color: @fg-alt;
+}

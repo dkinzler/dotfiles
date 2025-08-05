@@ -7,6 +7,9 @@
 # Template
 # https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
+[window]
+dynamic_padding = true
+
 [colors.bright]
 black = "#6272a4"
 blue = "#d6acff"

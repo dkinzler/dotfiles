@@ -8,14 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -27,13 +19,3 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 . $HOME/.cargo/env
-
-# set this on login, otherwise the remaps would not be loaded 
-# until the first time a terminal is opened
-
-# remap capslock to esacpe
-setxkbmap -option caps:escape
-
-# remap capslock to escape when tapped and ctrl when held
-# setxkbmap -option caps:ctrl_modifier
-# xcape -e 'Caps_Lock=Escape' -t 500
