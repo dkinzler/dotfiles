@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-queries=("cyberpunk" "futuristic city at night")
-query=${queries[ $RANDOM % ${#queries[@]} ]}
-access_key=$(<~/.scripts/.unsplash-key)
-wget -q -O- "https://api.unsplash.com/photos/random/?query=${query}" --header="Authorization: Client-ID ${access_key}" \
-    | jq -r '.urls.full' \
-    | wget -q -i- -O ~/.scripts/bg.jpg
-hyprctl hyprpaper reload ,"~/.scripts/bg.jpg"
+url=$(wget -q -O- "https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=toplist&topRange=3d" | jq -r '.data.[].path' | shuf -n 1)
+file="$HOME/.wallpapers/$(basename "$url")"
+wget -q -O "$file" "$url" &&
+    hyprctl hyprpaper reload ,"$file"
