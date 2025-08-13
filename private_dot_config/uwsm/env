@@ -1,0 +1,11 @@
+export XCURSOR_SIZE=24
+export HYPRCURSOR_SIZE=24
+
+# for hardware video acceleration with libva-nvidia-driver
+# see https://github.com/elFarto/nvidia-vaapi-driver
+export LIBVA_DRIVER_NAME="nvidia"
+export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+# for firefox hardware video acceleration
+export MOZ_DISABLE_RDD_SANDBOX=1
+# for electron apps to use wayland
+export ELECTRON_OZONE_PLATFORM_HINT="auto"

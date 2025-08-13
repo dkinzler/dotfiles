@@ -9,6 +9,7 @@
 
 [window]
 dynamic_padding = true
+opacity = 0.8
 
 [colors.bright]
 black = "#6272a4"
@@ -47,9 +48,10 @@ text = "CellBackground"
 TERM = "xterm-256color"
 
 [font]
-normal.family = "SauceCodePro Nerd Font"
-normal.style = "Bold"
-size = 13.25
+normal.family = "JetBrainsMono Nerd Font"
+# normal.family = "SauceCodePro Nerd Font"
+normal.style = "SemiBold"
+size = 16
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"

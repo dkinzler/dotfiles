@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# confirm dialog for exiting
+# supports pango markup
+zenity --question \
+    --title "Hyprland" \
+    --text "<big>Do you really want to exit?</big>" \
+    --icon "application-exit-symbolic" \
+    --timeout 0 \
+    --default-cancel
+
+if [ $? -eq 0 ]; then
+    uwsm stop
+fi
