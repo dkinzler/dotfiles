@@ -1,3 +1,30 @@
-if uwsm check may-start && uwsm select; then
-    exec uwsm start default
+# .zprofile is run every time a login shell is started
+
+addToPath() {
+    # only add if not already contained
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+# why update path in .zprofile instead of .zshrc?
+# some applications e.g. a compositor launched through uwsm
+# will not inherit the vars set in .zshrc 
+if [ -d "$HOME/bin" ] ; then
+    addToPath "$HOME/bin"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    addToPath "$HOME/.local/bin"
+fi
+
+if [ -d "$HOME/.scripts" ] ; then
+    addToPath "$HOME/.scripts"
+fi
+
+# tmux starts a login shell by default for every new pane/window
+# so we need to make sure that a compositor/graphical session
+# is not already running
+if uwsm check may-start -q; then
+    exec uwsm start hyprland-uwsm.desktop
 fi

@@ -66,31 +66,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-
-# envs
-
-addToPath() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$PATH:$1
-    fi
-}
-
-addToPathFront() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$1:$PATH
-    fi
-}
-
-if [ -d "$HOME/bin" ] ; then
-    addToPath $HOME/bin
-fi
-
-if [ -d "$HOME/.local/bin" ] ; then
-    addToPath $HOME/.local/bin
-fi
-
-addToPathFront $HOME/.scripts
-
 # keys
 # wait 10ms for additional characters in sequence
 # removes noticeable delay when e.g. switching between insert and normal mode

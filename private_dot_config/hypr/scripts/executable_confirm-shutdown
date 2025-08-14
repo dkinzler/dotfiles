@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-# confirm dialog for exiting
-# supports pango markup
 zenity --question \
     --title "" \
-    --text "<big>Do you really want to exit hyprland?</big>" \
+    --text "<big>Do you really want to shut down?</big>" \
     --icon "application-exit-symbolic" \
     --timeout 0 \
     --default-cancel
 
 if [ $? -eq 0 ]; then
-    uwsm stop
+    systemctl poweroff
 fi
