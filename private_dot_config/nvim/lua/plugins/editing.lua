@@ -16,9 +16,9 @@ return {
         "echasnovski/mini.surround",
         opts = {
             mappings = {
-                add = 'sa',          -- Add surrounding in Normal and Visual modes
-                delete = 'sd',       -- Delete surrounding
-                replace = 'sr',      -- Replace surrounding
+                add = 'Sa',          -- Add surrounding in Normal and Visual modes
+                delete = 'Sd',       -- Delete surrounding
+                replace = 'Sr',      -- Replace surrounding
 
                 find = '',           -- Find surrounding (to the right)
                 find_left = '',      -- Find surrounding (to the left)
