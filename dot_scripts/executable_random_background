@@ -3,4 +3,4 @@
 url=$(wget -q -O- "https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=toplist&topRange=3d" | jq -r '.data.[].path' | shuf -n 1)
 file="$HOME/.wallpapers/$(basename "$url")"
 wget -q -O "$file" "$url" &&
-    hyprctl hyprpaper reload ,"$file"
+    hyprctl hyprpaper wallpaper ", $file"

@@ -26,5 +26,5 @@ fi
 # so we need to make sure that a compositor/graphical session
 # is not already running
 if uwsm check may-start -q; then
-    exec uwsm start hyprland-uwsm.desktop
+    exec uwsm start hyprland.desktop
 fi
