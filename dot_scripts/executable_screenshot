@@ -3,4 +3,4 @@
 filename="$HOME/Pictures/screenshots/Screenshot-$(date +%F_%T).png"
 echo $filename
 
-grim $filename && ristretto $filename 
+grim $filename && nomacs $filename 
