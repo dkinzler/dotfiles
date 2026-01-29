@@ -1,0 +1,92 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/slartibartfast/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+theme = Material Darker
+background = "#101010"
+#foreground = "#f8f8f2"
+background-opacity = 0.8
+
+cursor-color = cell-foreground
+cursor-text = cell-background
+
+font-family = ""
+font-family = "JetBrainsMono Nerd Font"
+font-style = "SemiBold"
+font-size = 16
+
+#term = "xterm-256color"
+
+# attach to existing session "m"
+command = /usr/bin/zsh -c "tmux new -A -s m"
+
+# remove all default keybinds
+keybind = clear
+# you can get the default keybinds in the config format with
+# ghostty +list-keybinds --plain --default
+keybind = ctrl++=increase_font_size:1
+keybind = ctrl+-=decrease_font_size:1
+keybind = ctrl+0=reset_font_size
+keybind = ctrl+shift+page_up=jump_to_prompt:-1
+keybind = ctrl+shift+page_down=jump_to_prompt:1
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = ctrl+shift+i=inspector:toggle
+keybind = ctrl+shift+,=reload_config
+keybind = ctrl+shift+p=toggle_command_palette
+keybind = f11=toggle_fullscreen
+# Note: need to also set the bind in the hyprland config
+# for it to work globally
+keybind = global:f12=toggle_quick_terminal
+
+# handled by tmux for now
+#keybind = shift+page_down=scroll_page_down
+#keybind = shift+page_up=scroll_page_up
+#keybind = shift+arrow_down=adjust_selection:down
+#keybind = shift+arrow_up=adjust_selection:up
