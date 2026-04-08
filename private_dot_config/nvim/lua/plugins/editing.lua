@@ -2,7 +2,6 @@ return {
 
     {
         'numToStr/Comment.nvim',
-        lazy = false,
         opts = {},
     },
 
@@ -13,28 +12,36 @@ return {
     },
 
     {
-        "echasnovski/mini.surround",
+        "nvim-mini/mini.surround",
+        version = false,
+        keys = {
+            -- lazy load on any of these keys
+            -- does not actually define the mappings
+            { "Sa", nil },
+            { "Sd", nil },
+            { "Sr", nil },
+        },
         opts = {
             mappings = {
-                add = 'Sa',          -- Add surrounding in Normal and Visual modes
-                delete = 'Sd',       -- Delete surrounding
-                replace = 'Sr',      -- Replace surrounding
+                add = 'Sa',       -- Add surrounding in Normal and Visual modes
+                delete = 'Sd',    -- Delete surrounding
+                replace = 'Sr',   -- Replace surrounding
 
-                find = '',           -- Find surrounding (to the right)
-                find_left = '',      -- Find surrounding (to the left)
-                highlight = '',      -- Highlight surrounding
-                update_n_lines = '', -- Update `n_lines`
+                find = '',        -- Find surrounding (to the right)
+                find_left = '',   -- Find surrounding (to the left)
+                highlight = '',   -- Highlight surrounding
 
-                suffix_last = '',    -- Suffix to search with "prev" method
-                suffix_next = '',    -- Suffix to search with "next" method
+                suffix_last = '', -- Suffix to search with "prev" method
+                suffix_next = '', -- Suffix to search with "next" method
             },
         },
     },
 
     {
-        "echasnovski/mini.ai",
+        "nvim-mini/mini.ai",
+        version = false,
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-        version = "*",
         config = function(_, _)
             local gen_spec = require("mini.ai").gen_spec
             require("mini.ai").setup({
@@ -47,22 +54,25 @@ return {
         end
     },
 
+    -- TODO: treesitter provider broken since nvim-treesitter rewrite
+    --       might be fixed in the future - 04/2026
+    --
     -- Automatically highlight other uses of the word under cursor
-    {
-        "RRethy/vim-illuminate",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {
-            providers = {
-                "lsp",
-                "treesitter",
-            },
-            delay = 200,
-            large_file_cutoff = 4000,   -- use large_file_overrides for files with more than 4000 lines
-            large_file_overrides = nil, -- nil will disable vim-illuminate for large files
-        },
-        config = function(_, opts)
-            require("illuminate").configure(opts)
-        end
-    },
+    -- {
+    --     "RRethy/vim-illuminate",
+    --     lazy = true,
+    --     event = { "BufReadPost", "BufNewFile" },
+    --     opts = {
+    --         providers = {
+    --             "lsp",
+    --             "treesitter",
+    --             -- "regex",
+    --         },
+    --         delay = 200,
+    --     },
+    --     config = function(_, opts)
+    --         require("illuminate").configure(opts)
+    --     end
+    -- },
 
 }
