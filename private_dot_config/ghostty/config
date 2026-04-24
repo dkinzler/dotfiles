@@ -51,7 +51,7 @@
 theme = Material Darker
 background = "#101010"
 #foreground = "#f8f8f2"
-background-opacity = 0.8
+background-opacity = 0.95
 
 cursor-color = cell-foreground
 cursor-text = cell-background
@@ -67,6 +67,8 @@ font-feature=-calt
 
 # attach to existing session "m"
 command = /usr/bin/zsh -c "tmux new -A -s m"
+
+confirm-close-surface = false
 
 # remove all default keybinds
 keybind = clear
