@@ -18,9 +18,32 @@ vim.keymap.set("n", "<leader>en", function()
 end, { desc = "Go to next diagnostic message" })
 
 -- quickfix
-vim.keymap.set("n", "<leader>qo", "<Cmd>copen<CR>", { desc = "Open quickfix list" })
+vim.keymap.set("n", "<leader>qq", function()
+    for _, win in ipairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            vim.cmd("cclose")
+            return
+        end
+    end
+    vim.cmd("copen")
+end, { desc = "Toggle quickfix" })
 vim.keymap.set("n", "<leader>qn", "<Cmd>cnext<CR>zz", { desc = "Quickfix next" })
 vim.keymap.set("n", "<leader>qp", "<Cmd>cprev<CR>zz", { desc = "Quickfix prev" })
+vim.keymap.set("n", "<leader>qg", function()
+    vim.ui.input({ prompt = "Grep > " }, function(input)
+        if not input or input == "" then return end
+
+        local cmd = "rg --vimgrep --smart-case " .. vim.fn.shellescape(input)
+        local result = vim.fn.systemlist(cmd)
+
+        vim.fn.setqflist({}, "r", {
+            title = "Grep: " .. input,
+            lines = result,
+        })
+
+        vim.cmd("copen")
+    end)
+end, { desc = "Grep quickfix" })
 
 -- toggle spell check
 vim.keymap.set("n", "<leader>sp", "<Cmd>set spell!<CR>", { desc = "Toggle spell check" })
