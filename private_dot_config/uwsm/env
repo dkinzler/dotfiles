@@ -9,3 +9,9 @@ export __GLX_VENDOR_LIBRARY_NAME="nvidia"
 export MOZ_DISABLE_RDD_SANDBOX=1
 # for electron apps to use wayland
 export ELECTRON_OZONE_PLATFORM_HINT="auto"
+
+# install ibus and set these to get compose/dead keys working
+# with certain apps e.g. ´ or ^
+export GTK_IM_MODULE="ibus"
+export QT_IM_MODULE="ibus"
+export XMODIFIERS="@im=ibus"
