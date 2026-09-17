@@ -36,6 +36,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 5 && ~/.scripts/random_background");
     hl.exec_cmd("uwsm app -- firefox", { workspace = "1 silent" });
     hl.exec_cmd("uwsm app -- obsidian", { workspace = "2 silent" });
+    hl.exec_cmd("uwsm app -- fcitx5 -d");
 end)
 
 
