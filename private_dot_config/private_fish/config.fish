@@ -1,3 +1,6 @@
+# Disable welcome message
+set fish_greeting
+
 # Vi mode
 fish_vi_key_bindings
 
