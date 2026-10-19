@@ -60,6 +60,8 @@ key = "F11"
 [terminal]
 
 [terminal.shell]
-args = ["-c", "tmux new -A -s m"]
+# args = ["-c", "tmux new -A -s m"]
+# program = "/bin/zsh"
+args = []
 program = "/bin/zsh"
 
