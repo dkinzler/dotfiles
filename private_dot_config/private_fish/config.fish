@@ -5,6 +5,7 @@ set fish_greeting
 fish_vi_key_bindings
 
 # Default "ctl-f" is not default in vi mode
+bind ctrl-f accept-autosuggestion
 bind --mode insert ctrl-f accept-autosuggestion
 
 # Overwrite function to not show vi mode indicator in prompt
