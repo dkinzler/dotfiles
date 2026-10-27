@@ -66,7 +66,7 @@ font-feature=-calt
 #term = "xterm-256color"
 
 # attach to existing session "m"
-command = /usr/bin/zsh -c "tmux new -A -s m"
+command = /usr/bin/fish -c "tmux new -A -s m"
 
 confirm-close-surface = false
 
