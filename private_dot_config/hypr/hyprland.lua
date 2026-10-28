@@ -311,10 +311,6 @@ hl.bind(mainMod .. " + Odiaeresis",
 -- Take screenshot
 hl.bind("Print", hl.dsp.exec_cmd("~/.scripts/screenshot"))
 
--- ghostty global shortcuts
--- run "hyprctl globalshortcuts"
-hl.bind("F12", hl.dsp.global("com.mitchellh.ghostty:F12"))
-
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
